@@ -1,154 +1,164 @@
-# 📌 Smart Job & Internship Finder  
+# 📌 Smart Resume Analyzer
 
-An **AI-powered job and internship portal** built with **React, Node.js/Express, MySQL, Tailwind, Bootstrap, and AI APIs**.  
-The platform allows students to upload their resumes, get **AI-driven career insights**, and match with relevant jobs or internships.  
-
----
-
-## 🚀 Features  
-
-### 👤 User Features  
-- **Sign Up / Login** (secure authentication).  
-- **Profile Management** (personal info + resume upload).  
-- **Resume Upload** (PDF/DOCX).  
-- **Job Search & Filters** (by title, location, skills).  
-- **AI Resume Analysis**  
-  - Extract skills & experiences from CV.  
-  - Identify missing skills.  
-- **AI Job Matching**  
-  - Match percentage between user CV and job descriptions.  
-- **AI Cover Letter Generator (optional)**  
-  - Auto-generate a draft cover letter based on CV + job.  
-- **Career Recommendations**  
-  - Suggest courses or skills for career growth.  
-
-### 👨‍💼 Admin Features  
-- Post new jobs or internships.  
-- Manage job listings.  
-- View applications and candidate match scores.  
+An **AI-powered resume analysis and job matching platform** built with **React, Node.js/Express, MySQL, Tailwind, Bootstrap, and AI APIs**.  
+The platform enables students to upload resumes, receive **AI-driven career insights**, and match with relevant jobs or internships.
 
 ---
 
-## 🛠️ Tech Stack  
+## 📸 Screenshots
 
-### Frontend  
-- **React.js** → User interface (dashboard, job listing, resume upload).  
-- **Tailwind CSS + Bootstrap** → Styling and responsive UI.  
-
-### Backend  
-- **Node.js + Express** → API server.  
-- **MySQL** → Database for users, resumes, jobs, applications, and AI feedback.  
-
-### AI Integration  
-- **AI APIs (e.g., OpenAI GPT or Hugging Face)**  
-  - Resume parsing & analysis.  
-  - Job matching recommendations.  
-  - Cover letter generation.  
+<div style="display: flex; gap: 10px;">
+  <img src="screenshots/dashboard.png" alt="Dashboard" width="350"/>
+  <img src="screenshots/job-listing.png" alt="Job Listing" width="350"/>
+  <img src="screenshots/resume-analysis.png" alt="Resume Analysis" width="350"/>
+</div>
 
 ---
 
-## 🗂️ Project Structure  
+## 🚀 Features
 
-smart-job-finder/
+### 👤 User Features
+- **Sign Up / Login** (secure authentication)
+- **Profile Management** (personal info + resume upload)
+- **Resume Upload** (PDF/DOCX)
+- **Job Search & Filters** (by title, location, skills)
+- **AI Resume Analysis**
+  - Extract skills & experiences from CV
+  - Identify missing skills
+- **AI Job Matching**
+  - Match percentage between user CV and job descriptions
+- **AI Cover Letter Generator (optional)**
+  - Auto-generate a draft cover letter based on CV + job
+- **Career Recommendations**
+  - Suggest courses or skills for career growth
+
+### 👨‍💼 Admin Features
+- Post new jobs or internships
+- Manage job listings
+- View applications and candidate match scores
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React.js** → User interface (dashboard, job listing, resume upload)
+- **Tailwind CSS + Bootstrap** → Styling and responsive UI
+
+### Backend
+- **Node.js + Express** → API server
+- **MySQL** → Database for users, resumes, jobs, applications, and AI feedback
+
+### AI Integration
+- **AI APIs (e.g., OpenAI GPT or Hugging Face)**
+  - Resume parsing & analysis
+  - Job matching recommendations
+  - Cover letter generation
+
+---
+
+## 🗂️ Project Structure
+
+smart-resume-annalyzer/
 │
-├── backend/ # Node.js + Express API
-│ ├── routes/ # API routes (auth, jobs, resume, AI)
-│ ├── models/ # Database models (MySQL)
-│ ├── controllers/ # Logic for routes
-│ ├── config/ # DB & API configs
-│ └── server.js # Express app entry point
+├── server/ # Node.js + Express API
+│   ├── routes/ # API routes (auth, jobs, resume, AI)
+│   ├── models/ # Database models (MySQL)
+│   ├── controllers/ # Logic for routes
+│   ├── config/ # DB & API configs
+│   └── index.js # Express app entry point
 │
-├── frontend/ # React app
-│ ├── src/
-│ │ ├── components/ # React components
-│ │ ├── pages/ # Pages (Login, Dashboard, Jobs)
-│ │ ├── services/ # API calls to backend
-│ │ └── App.js # Main app
+├── client/ # React app
+│   ├── src/
+│   │   ├── components/ # React components
+│   │   ├── pages/ # Pages (Login, Dashboard, Jobs)
+│   │   ├── api/ # API calls to backend
+│   │   └── App.js # Main app
 │
-├── database/ # SQL scripts for schema
-│ └── schema.sql
+├── sql/ # SQL scripts for schema
+│   └── schema.sql
 │
 ├── README.md
 └── package.json
 
+---
+
+## 🔑 Key API Endpoints
+
+### Authentication
+- `POST /api/auth/register` → Create user
+- `POST /api/auth/login` → Login user
+
+### Jobs
+- `GET /api/jobs` → Fetch all jobs
+- `POST /api/jobs` → Add new job (admin)
+- `GET /api/jobs/:id` → Fetch single job
+
+### Resume
+- `POST /api/resume/upload` → Upload resume
+- `POST /api/resume/analyze` → Send resume text to AI API for skill extraction
+
+### AI Matching
+- `POST /api/match` → Compare resume vs job description → return match % + recommendations
+- `POST /api/cover-letter` → Generate AI cover letter
 
 ---
 
-## 🔑 Key API Endpoints  
+## ⚡ How It Works (Workflow)
 
-### Authentication  
-- `POST /api/auth/register` → Create user.  
-- `POST /api/auth/login` → Login user.  
-
-### Jobs  
-- `GET /api/jobs` → Fetch all jobs.  
-- `POST /api/jobs` → Add new job (admin).  
-- `GET /api/jobs/:id` → Fetch single job.  
-
-### Resume  
-- `POST /api/resume/upload` → Upload resume.  
-- `POST /api/resume/analyze` → Send resume text to AI API for skill extraction.  
-
-### AI Matching  
-- `POST /api/match` → Compare resume vs job description → return match % + recommendations.  
-- `POST /api/cover-letter` → Generate AI cover letter.  
+1. User signs up and uploads resume
+2. Backend extracts text from resume (using `pdf-parse` or similar)
+3. Resume text is sent to **AI API** for:
+   - Skills extraction
+   - Strengths & weaknesses analysis
+   - Suggested improvements
+4. User browses jobs → when clicking "Match", resume data + job description are compared via AI API
+5. System returns **match score (%) + recommended skills**
+6. (Optional) User generates a **cover letter draft** for that job
 
 ---
 
-## ⚡ How It Works (Workflow)  
+````markdown
+## 🛠️ Installation
 
-1. User signs up and uploads resume.  
-2. Backend extracts text from resume (using `pdf-parse` or similar).  
-3. Resume text is sent to **AI API** for:  
-   - Skills extraction  
-   - Strengths & weaknesses analysis  
-   - Suggested improvements  
-4. User browses jobs → when clicking "Match", resume data + job description are compared via AI API.  
-5. System returns **match score (%) + recommended skills**.  
-6. (Optional) User generates a **cover letter draft** for that job.  
-
----
-
-## 🛠️ Installation  
-
-### 1. Clone the repo  
+### 1. Clone the repo
 ```bash
 git clone https://github.com/elijah-dot/smart-resume-annalyzer.git
-cd smart-job-finder
-2. Setup Backend
-bash
-Copy code
-cd backend
-npm install
-Create a .env file:
+cd smart-resume-annalyzer
+```
 
-env
-Copy code
+### 2. Setup Backend
+```bash
+cd server
+npm install
+```
+Create a `.env` file in the `server` folder with the following content:
+```env
 PORT=5000
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=yourpassword
 DB_NAME=job_finder
 OPENAI_API_KEY=your_openai_api_key
-Run backend:
-
-bash
-Copy code
+```
+Run the backend server:
+```bash
 npm start
-3. Setup Frontend
-bash
-Copy code
-cd frontend
+```
+
+### 3. Setup Frontend
+```bash
+cd ../client
 npm install
 npm start
-Frontend runs on http://localhost:3000.
+```
+Frontend runs on [http://localhost:3000](http://localhost:3000).
 
-📊 Database Schema (MySQL)
-Users Table
-| id | name | email | password | resume_text | role |
+---
 
-Jobs Table
-| id | title | description | skills_required | company | location |
+## 🌐 Live Demo & Contact
 
-Applications Table
-| id | user_id | job_id | match_score | cover_letter |
+- **Live Link:** [https://ai-powered-job-match-olox.bolt.host/]
+- **Project Owner:** [Elijah Mwangi Wangu]
+- **Contact Email:** [elijahwangu91@gmail.com]
+
