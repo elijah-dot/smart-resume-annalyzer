@@ -8,9 +8,10 @@ The platform enables students to upload resumes, receive **AI-driven career insi
 ## 📸 Screenshots
 
 <div style="display: flex; gap: 10px;">
-  <img src="screenshots/dashboard.png" alt="Dashboard" width="350"/>
-  <img src="screenshots/job-listing.png" alt="Job Listing" width="350"/>
-  <img src="screenshots/resume-analysis.png" alt="Resume Analysis" width="350"/>
+  <img src="./images/dashboard.png" alt="Dashboard" width="350"/>
+  <img src="./images/job listings.png" alt="Job Listing" width="350"/>
+  <img src="./images/resumeannalyzer.png" alt="Resume Analysis" width="350"/>
+  <img src="./images/signup.png" alt="sign up" width="350"/>
 </div>
 
 ---
